@@ -1,0 +1,55 @@
+-> Table scan on <temporary>  (actual time=4658..4658 rows=50 loops=1)
+     -> Aggregate using temporary table  (actual time=4658..4658 rows=50 loops=1)
+         -> Nested loop inner join  (cost=181675 rows=490212) (actual time=92..3862 rows=500000 loops=1...
+		 
+		 
+-> Table scan on <temporary>  (actual time=7894..7894 rows=8 loops=1)
+     -> Aggregate using temporary table  (actual time=7894..7894 rows=8 loops=1)
+         -> Nested loop inner join  (cost=1.32e+6 rows=1.49e+6) (actual time=31.1..5810 rows=1.5e+6 loops...
+		 
+-> Limit: 20 row(s)  (actual time=9225..9225 rows=20 loops=1)
+     -> Sort: revenue DESC, limit input to 20 row(s) per chunk  (actual time=9225..9225 rows=20 loops=1)
+         -> Table scan on <temporary>  (actual time=9150..9183 rows=70927 loops=1)
+       ...
+	   
+-> Sort: sessions DESC  (actual time=1345..1355 rows=99998 loops=1)
+     -> Stream results  (cost=202395 rows=99165) (actual time=13.7..1258 rows=99998 loops=1)
+         -> Group aggregate: count(0)  (cost=202395 rows=99165) (actual time=13.3..1233 rows=99...
+		 
+
+-> Table scan on <temporary>  (actual time=3709..3709 rows=50 loops=1)
+     -> Aggregate using temporary table  (actual time=3709..3709 rows=50 loops=1)
+         -> Nested loop inner join  (cost=181675 rows=490212) (actual time=0.179..2973 rows=500000 loop...
+		 
+-> Table scan on <temporary>  (actual time=6768..6768 rows=8 loops=1)
+     -> Aggregate using temporary table  (actual time=6768..6768 rows=8 loops=1)
+         -> Nested loop inner join  (cost=782869 rows=1.49e+6) (actual time=5.95..4713 rows=1.5e+6 loops=...
+		 
+		 
+-> Group aggregate: sum(oi.sales)  (cost=1.01e+6 rows=71956) (actual time=56.2..362725 rows=70816 loops=1)
+     -> Nested loop inner join  (cost=868841 rows=1.45e+6) (actual time=14.5..359425 rows=1.5e+6 loops=1)
+         -> Nested loop inner join  (cost=1...
+		 
+
+
+
+1	SIMPLE	c		ALL	PRIMARY				99648	100.00	Using temporary
+1	SIMPLE	o		ref	customer_id	customer_id	9	sql_performance_benchmarking.c.customer_id	4	100.00	
+
+1	SIMPLE	p		ALL	PRIMARY				19736	100.00	Using temporary
+1	SIMPLE	oi		ref	product_id	product_id	9	sql_performance_benchmarking.p.product_id	78	100.00	
+
+1	SIMPLE	c		index	PRIMARY,idx_customer_name	idx_customer_name	603		99648	100.00	Using index; Using temporary; Using filesort
+1	SIMPLE	o		ref	customer_id	customer_id	9	sql_performance_benchmarking.c.customer_id	4	100.00	
+
+1	SIMPLE	web_sessions		index	customer_id	customer_id	9		958010	100.00	Using index; Using temporary; Using filesort
+
+1	SIMPLE	c		ALL	PRIMARY				99648	100.00	Using temporary
+1	SIMPLE	o		ref	customer_id	customer_id	9	sql_performance_benchmarking.c.customer_id	4	100.00	
+
+1	SIMPLE	p		ALL	PRIMARY				19736	100.00	Using temporary
+1	SIMPLE	oi		ref	product_id	product_id	9	sql_performance_benchmarking.p.product_id	78	100.00	
+
+1	SIMPLE	c		index	PRIMARY,idx_customer_name	idx_customer_name	603		99648	100.00	Using index
+1	SIMPLE	o		ref	PRIMARY,customer_id	customer_id	9	sql_performance_benchmarking.c.customer_id	4	100.00	Using index
+1	SIMPLE	oi		ref	order_id	order_id	9	sql_performance_benchmarking.o.order_id	3	100.00	
