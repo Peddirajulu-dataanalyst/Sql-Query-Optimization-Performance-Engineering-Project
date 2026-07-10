@@ -1,3 +1,0 @@
-CREATE DATABASE sql_performance_benchmarking;
-
-USE sql_performance_benchmarking;

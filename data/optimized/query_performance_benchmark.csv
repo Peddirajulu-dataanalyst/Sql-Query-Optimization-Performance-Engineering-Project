@@ -1,8 +1,0 @@
-Query_ID,Query_Name,Records_Processed,Before_Time_Sec,After_Time_Sec,Improvement_%,Optimization_Type,Result
-Q1,Revenue by State,500K Orders,4.658,5.536,-18.9,State Index,Not Beneficial
-Q2,Revenue by Category,1.5M Order Items,7.894,11.639,-47.4,Category Index,Not Beneficial
-Q3,Top Customers,500K Orders,9.225,1.903,79.37,"Covering Index (customer_id, order_amount)",Successful
-Q4,Most Active Visitors,958K Sessions,NULL,NULL,NULL,Existing customer_id Index,Already Optimized
-Q5,Average Order Value,500K Orders,3.709,3.709,0,Existing Covering Index,No Additional Optimization
-Q6,Product Profitability,1.5M Order Items,6.746,6.746,0,Join Already Optimized,Aggregation Bottleneck
-Q7,Heavy Customer Sales Join,1.5M Order Items,362.725,10.086,97.22,"Covering Index (order_id, sales)",Highly Successful
